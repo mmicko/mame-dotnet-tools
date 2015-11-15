@@ -29,6 +29,11 @@ namespace PreventFormating
                     lines[i] = lines[i] + "\r\n// clang-format on\r\n}";
                     indefine = false;
                 }
+                if (indefine && lines[i].Trim().Equals(""))
+                {
+                    lines[i] = lines[i] + "\r\n// clang-format on\r\n}";
+                    indefine = false;
+                }
 
                 if (lines[i].Trim().StartsWith("#define") && !inmacro && !indefine)
                 {
@@ -144,7 +149,21 @@ namespace PreventFormating
                     inmacro = false;
                 }
 
-                if (lines[i].Trim().StartsWith("GAME("))
+                if (lines[i].Trim().Contains("GFXDECODE_START"))
+                {
+                    lines[i] = "// clang-format off\r\n" + lines[i];
+                    changed = true;
+                    inmacro = true;
+                    continue;
+                }
+
+                if (inmacro && lines[i].Trim().Contains("GFXDECODE_END"))
+                {
+                    lines[i] = lines[i] + "\r\n// clang-format on\r\n}";
+                    inmacro = false;
+                }
+
+                if (lines[i].Trim().StartsWith("GAME(") || lines[i].Trim().StartsWith("GAMEL(") || lines[i].Trim().StartsWith("CONS(") || lines[i].Trim().StartsWith("COMP(") || lines[i].Trim().StartsWith("SYST("))
                 {
                     lines[i] = "// clang-format off\r\n" + lines[i] + "\r\n// clang-format on\r\n}";
                     inmacro = false;
@@ -189,8 +208,8 @@ namespace PreventFormating
         }
         static void Main(string[] args)
         {
-            string root = @"c:\buildtools\src\mame";
-            AnalizeDir(root + @"\src\devices\bus\");
+            string root = @"c:\buildtools\src\mame-split";
+            AnalizeDir(root + @"\src\");
         }
     }
 }

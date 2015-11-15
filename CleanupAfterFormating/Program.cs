@@ -13,9 +13,32 @@ namespace CleanupAfterFormating
         public static void changefile(string fileContent, string filename)
         {
             fileContent = fileContent.Substring(0, fileContent.Length - 2);
-            fileContent = fileContent.Replace("\r\n// clang-format on\r\n}", "");
-            fileContent = fileContent.Replace("// clang-format off\r\n", "") + "\r\n";
-            File.WriteAllText(filename, fileContent);
+            string[] lines = fileContent.Split('\n');
+            for (int i = 0; i < lines.Length; i++)
+            {
+                lines[i] = lines[i].Replace("\n", "").Replace("\r", "");
+            }
+
+            List<string> output = new List<string>();
+
+            int j = 0;
+            do
+            {
+                if (lines[j].Contains("// clang-format on"))
+                {
+                    j+=2;
+                    continue;
+                }
+                if (lines[j].Contains("// clang-format off"))
+                {
+                    j++;
+                    continue;
+                }
+                output.Add(lines[j]);
+                j++;
+            }
+            while (j < lines.Length) ;
+            System.IO.File.WriteAllLines(filename, output.ToArray());
         }
 
         static void Analize(string path, string ext)
@@ -50,8 +73,8 @@ namespace CleanupAfterFormating
         }
         static void Main(string[] args)
         {
-            string root = @"c:\buildtools\src\mame";
-            AnalizeDir(root + @"\src\devices\bus\");
+            string root = @"c:\buildtools\src\mame-split";
+            AnalizeDir(root + @"\src\");
         }
     }
 }
