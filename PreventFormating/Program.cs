@@ -26,7 +26,7 @@ namespace PreventFormating
             {
                 if (indefine && !lines[i].TrimEnd().EndsWith("\\") && !lines[i].Trim().StartsWith("#define"))
                 {
-                    lines[i] = lines[i] + "\r\n// clang-format on";
+                    lines[i] = lines[i] + "\r\n// clang-format on\r\n}";
                     indefine = false;
                 }
 
@@ -52,7 +52,7 @@ namespace PreventFormating
 
                 if (inmacro && lines[i].Trim().Contains("MACHINE_CONFIG_END"))
                 {
-                    lines[i] = lines[i] + "\r\n// clang-format on";
+                    lines[i] = lines[i] + "\r\n// clang-format on\r\n}";
                     inmacro = false;
                 }
 
@@ -68,7 +68,7 @@ namespace PreventFormating
 
                 if (inmacro && lines[i].Trim().Contains("ROM_END"))
                 {
-                    lines[i] = lines[i] + "\r\n// clang-format on";
+                    lines[i] = lines[i] + "\r\n// clang-format on\r\n}";
                     inmacro = false;
                 }
 
@@ -83,7 +83,7 @@ namespace PreventFormating
 
                 if (inmacro && lines[i].Trim().Contains("ADDRESS_MAP_END"))
                 {
-                    lines[i] = lines[i] + "\r\n// clang-format on";
+                    lines[i] = lines[i] + "\r\n// clang-format on\r\n}";
                     inmacro = false;
                 }
 
@@ -98,7 +98,7 @@ namespace PreventFormating
 
                 if (inmacro && lines[i].Trim().Contains("INPUT_PORTS_END"))
                 {
-                    lines[i] = lines[i] + "\r\n// clang-format on";
+                    lines[i] = lines[i] + "\r\n// clang-format on\r\n}";
                     inmacro = false;
                 }
 
@@ -112,7 +112,7 @@ namespace PreventFormating
 
                 if (inmacro && lines[i].Trim().Contains("DISCRETE_SOUND_END"))
                 {
-                    lines[i] = lines[i] + "\r\n// clang-format on";
+                    lines[i] = lines[i] + "\r\n// clang-format on\r\n}";
                     inmacro = false;
                 }
 
@@ -126,13 +126,13 @@ namespace PreventFormating
 
                 if (inmacro && lines[i].Trim().Contains("SLOT_INTERFACE_END"))
                 {
-                    lines[i] = lines[i] + "\r\n// clang-format on";
+                    lines[i] = lines[i] + "\r\n// clang-format on\r\n}";
                     inmacro = false;
                 }
 
                 if (lines[i].Trim().StartsWith("GAME("))
                 {
-                    lines[i] = "// clang-format off\r\n" + lines[i] + "\r\n// clang-format on";
+                    lines[i] = "// clang-format off\r\n" + lines[i] + "\r\n// clang-format on\r\n}";
                     inmacro = false;
                 }
             }
