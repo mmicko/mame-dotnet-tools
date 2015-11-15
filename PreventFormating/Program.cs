@@ -130,6 +130,20 @@ namespace PreventFormating
                     inmacro = false;
                 }
 
+                if (lines[i].Trim().Contains("FLOPPY_FORMATS_MEMBER"))
+                {
+                    lines[i] = "// clang-format off\r\n" + lines[i];
+                    changed = true;
+                    inmacro = true;
+                    continue;
+                }
+
+                if (inmacro && lines[i].Trim().Contains("FLOPPY_FORMATS_END"))
+                {
+                    lines[i] = lines[i] + "\r\n// clang-format on\r\n}";
+                    inmacro = false;
+                }
+
                 if (lines[i].Trim().StartsWith("GAME("))
                 {
                     lines[i] = "// clang-format off\r\n" + lines[i] + "\r\n// clang-format on\r\n}";
