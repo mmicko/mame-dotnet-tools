@@ -13,6 +13,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PreventFormating", "Prevent
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanupAfterFormating", "CleanupAfterFormating\CleanupAfterFormating.csproj", "{852AD30A-C646-410D-B956-D478D94B55AB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "clang-format", "clang-format", "{CBC348F1-6EF5-48DA-A6F6-F2A9FCCF3572}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "logs", "logs", "{E7719958-6344-4DAF-BE19-2D08BEB45BD8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LUA", "LUA", "{6977E82C-A31D-438D-8FE7-16EE67BE3876}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +48,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E6C34E9E-33BC-46B5-BBA7-020091C32BA9} = {6977E82C-A31D-438D-8FE7-16EE67BE3876}
+		{367194D0-438F-4683-8C97-E0C2BB8A659D} = {E7719958-6344-4DAF-BE19-2D08BEB45BD8}
+		{28E02029-C616-4F95-82F6-9C52C60090A7} = {6977E82C-A31D-438D-8FE7-16EE67BE3876}
+		{3D0604D8-2C2A-40A2-8A52-C112B92C8897} = {CBC348F1-6EF5-48DA-A6F6-F2A9FCCF3572}
+		{852AD30A-C646-410D-B956-D478D94B55AB} = {CBC348F1-6EF5-48DA-A6F6-F2A9FCCF3572}
 	EndGlobalSection
 EndGlobal
